@@ -1,1 +1,131 @@
-/*CSS File*/
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: aliceblue;
+    color: darkslategray;
+    line-height: 1.6;
+    padding: 2rem 1rem;
+}
+
+.container {
+    max-width: 750px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px;
+    border: 1px solid lightgray;
+}
+
+h1 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: black;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.25rem;
+}
+
+h3 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: gray;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: black;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-left: 0.75rem;
+}
+
+h4::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 15%;
+    height: 70%;
+    width: 4px;
+    background-color: dodgerblue;
+    border-radius: 2px;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid lightgray;
+}
+
+th, td {
+    padding: 1rem 1.25rem;
+    text-align: left;
+    border-bottom: 1px solid lightgray;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+th {
+    background-color: whitesmoke;
+    color: dimgray;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+table:nth-of-type(2) tr:nth-child(even) {
+    background-color: aliceblue;
+}
+
+table:first-of-type td:first-child {
+    width: 120px;
+    text-align: center;
+    background-color: aliceblue;
+}
+
+table:first-of-type img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid lightgray;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+ul, ol {
+    margin-left: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+    color: dimgray;
+}
+
+a {
+    color: dodgerblue;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: navy;
+    text-decoration: underline;
+}
