@@ -1,0 +1,55 @@
+.product-card {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 10px 0;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.product-overlay {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: white;
+    padding: 15px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-overlay {
+    transform: translateY(0);
+}
+
+.product-card:hover .product-info {
+    opacity: 0;
+    transform: translateY(-5px);
+}
+
+.overlay-button {
+    border: 1px solid #000;
+    text-align: center;
+    padding: 10px 0;
+    font-weight: 500;
+    background: white;
+    transition: 0.2s ease;
+}
+
+.overlay-button:hover {
+    background: #000;
+    color: #fff;
+}
