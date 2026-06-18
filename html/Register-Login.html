@@ -7,6 +7,57 @@
 <body>
     <div class="container">
         
+    <meta charset="utf-8">
+    <title>Đăng nhập & Đăng ký</title>
+    <link rel="stylesheet" href="../css/style2.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="tab-menu">
+            <button id="tab-login" class="tab-btn active" onclick="document.getElementById('login-form').classList.add('active'); document.getElementById('register-form').classList.remove('active'); this.classList.add('active'); document.getElementById('tab-register').classList.remove('active');">Đăng nhập</button>
+            <button id="tab-register" class="tab-btn" onclick="document.getElementById('login-form').classList.remove('active'); document.getElementById('register-form').classList.add('active'); this.classList.add('active'); document.getElementById('tab-login').classList.remove('active');">Đăng ký</button>
+        </div>
+
+        <form id="login-form" class="auth-form active" action="gioi-thieu.html">
+            <h2>Chào mừng trở lại</h2>
+
+            <div class="input-group">
+                <label for="login-username">Tên tài khoản hoặc Mã số</label>
+                <input type="text" id="login-username" required>
+            </div>
+
+            <div class="input-group">
+                <label for="login-password">Mật khẩu</label>
+                <input type="password" id="login-password" required>
+            </div>
+
+            <button type="submit" class="submit-btn">Đăng nhập</button>
+
+            <p class="switch-text">Chưa có tài khoản? <a href="#" onclick="document.getElementById('tab-register').click();">Đăng ký ngay</a></p>
+        </form>
+
+        <form id="register-form" class="auth-form" onsubmit="alert('Đăng ký thành công!'); document.getElementById('tab-login').click(); return false;">
+            <h2>Tạo tài khoản mới</h2>
+
+            <div class="input-group">
+                <label for="reg-name">Họ và tên</label>
+                <input type="text" id="reg-name" required>
+            </div>
+
+            <div class="input-group">
+                <label for="reg-email">Email sinh viên (@st.tvu.edu.vn)</label>
+                <input type="email" id="reg-email" pattern="^[a-zA-Z0-9._%+-]+@st\.tvu\.edu\.vn$" title="Email phải có đuôi @st.tvu.edu.vn" required>
+            </div>
+
+            <div class="input-group">
+                <label for="reg-password">Mật khẩu (Ít nhất 8 kí tự)</label>
+                <input type="password" id="reg-password" minlength="8" title="Mật khẩu phải có ít nhất 8 kí tự" required>
+            </div>
+
+            <button type="submit" class="submit-btn">Đăng ký</button>
+            
+            <p class="switch-text">Đã có tài khoản? <a href="#" onclick="document.getElementById('tab-login').click();">Đăng nhập ngay</a></p>
+        </form>
     </div>
 </body>
 </html>
