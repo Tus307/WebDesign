@@ -1,3 +1,8 @@
+h1{
+    display: flex;
+    text-align: center;
+}
+
 .product-card {
     display: block;
     position: relative;
