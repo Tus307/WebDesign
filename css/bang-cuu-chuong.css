@@ -1,0 +1,263 @@
+/* bang-cuu-chuong.css — Bảng Cửu Chương Tool Page */
+/* Premium Utilitarian Minimalism — Warm Monochrome Palette */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --canvas:       #F7F6F3;
+  --surface:      #FFFFFF;
+  --border:       #EAEAEA;
+  --border-focus: #111111;
+  --text-primary: #111111;
+  --text-muted:   #787774;
+  --text-body:    #2F3437;
+  --result-row:   #FBFBFA;
+  --accent-bg:    #E1F3FE;
+  --accent-text:  #1F6C9F;
+  --btn-bg:       #111111;
+  --btn-text:     #FFFFFF;
+  --btn-hover:    #333333;
+  --font-sans:    'Helvetica Neue', 'SF Pro Display', Arial, sans-serif;
+  --font-serif:   'Georgia', 'Playfair Display', serif;
+  --font-mono:    'SF Mono', 'JetBrains Mono', 'Courier New', monospace;
+  --transition:   200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--canvas);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: 64px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* ── Container ── */
+.container {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  animation: fadeUp 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── Page title injected visually ── */
+.container::before {
+  content: "Bảng cửu chương";
+  display: block;
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── Input form card ── */
+form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+form label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Number input */
+input[type="number"] {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 1rem;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  background: var(--canvas);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  outline: none;
+  transition: border-color var(--transition), background var(--transition);
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+input[type="number"]:focus {
+  border-color: var(--border-focus);
+  background: var(--surface);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 0.4;
+}
+
+/* Print button */
+input[type="button"],
+#btnPrint {
+  width: 100%;
+  padding: 11px 24px;
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border: none;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  transition: background var(--transition), transform var(--transition);
+}
+
+input[type="button"]:hover,
+#btnPrint:hover {
+  background: var(--btn-hover);
+}
+
+input[type="button"]:active,
+#btnPrint:active {
+  transform: scale(0.98);
+}
+
+/* ── Result display area ── */
+#result {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  min-height: 56px;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  padding: 20px 24px;
+  font-style: italic;
+  transition: padding var(--transition);
+}
+
+/* When result has table content, JS adds rows — style them */
+#result table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+}
+
+#result th {
+  display: none; /* hide if JS generates a header */
+}
+
+#result table tr {
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.5fr;
+  align-items: center;
+}
+
+#result table tr:last-child {
+  border-bottom: none;
+}
+
+#result table td {
+  padding: 13px 24px;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--text-body);
+  border: none;
+}
+
+/* Alternating rows */
+#result table tr:nth-child(even) {
+  background: var(--result-row);
+}
+
+/* Highlight the product (result column) */
+#result table td:last-child {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ── If JS outputs plain text lines, wrap them ── */
+#result p,
+#result div,
+#result span {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 2;
+  color: var(--text-body);
+  font-style: normal;
+}
+
+/* ── Result title (if JS writes it) ── */
+#result h3,
+#result h4 {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+  font-style: normal;
+}
+
+/* ── Animations ── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 520px) {
+  body {
+    padding: 40px 16px;
+  }
+
+  form {
+    padding: 18px;
+  }
+
+  #result {
+    padding: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .container {
+    animation: none;
+  }
+
+  input[type="number"],
+  input[type="button"] {
+    transition: none;
+  }
+}

@@ -88,3 +88,21 @@ products.forEach(createItem);
 function changeImg(el) {
     document.getElementById("mainImg").src = el.src;
 }
+
+
+
+
+function printBCC()
+{
+    let num = parseInt(document.getElementById("txtSo").value);
+    let result = "";
+
+    let i = 1;
+    while(i<=10)
+    {
+        result += `${num} x ${i} = ${num*i} <br>`; 
+        i++;
+    }
+
+    document.getElementById("result").innerHTML = result;
+}

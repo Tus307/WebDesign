@@ -1,0 +1,244 @@
+/* hoadon.css — Hóa Đơn Thanh Toán / Invoice Page */
+/* Premium Utilitarian Minimalism — Warm Monochrome Palette */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --canvas:       #F7F6F3;
+  --surface:      #FFFFFF;
+  --border:       #EAEAEA;
+  --text-primary: #111111;
+  --text-muted:   #787774;
+  --text-body:    #2F3437;
+  --total-bg:     #111111;
+  --total-text:   #FFFFFF;
+  --row-alt:      #FBFBFA;
+  --accent-bg:    #FBF3DB;
+  --accent-text:  #956400;
+  --font-sans:    'Helvetica Neue', 'SF Pro Display', Arial, sans-serif;
+  --font-serif:   'Georgia', 'Playfair Display', serif;
+  --font-mono:    'SF Mono', 'JetBrains Mono', 'Courier New', monospace;
+  --transition:   200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--canvas);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: 64px 24px;
+}
+
+/* ── Document label ── */
+body::before {
+  content: "HÓA ĐƠN THANH TOÁN";
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+body::after {
+  content: attr(data-date);
+}
+
+/* ── Container ── */
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  animation: fadeUp 500ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ── Invoice header ── */
+.container::before {
+  content: "Hóa đơn";
+  display: block;
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── Invoice table ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+table[border] {
+  border: 1px solid var(--border) !important;
+}
+
+/* Header row */
+thead tr,
+tr:first-child {
+  background: var(--canvas);
+}
+
+th {
+  padding: 12px 20px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  border-right: none;
+  white-space: nowrap;
+}
+
+/* Since the HTML uses <tr><th> without thead, target first row */
+tr:first-child th {
+  background: var(--canvas);
+}
+
+td {
+  padding: 16px 20px;
+  font-size: 0.875rem;
+  color: var(--text-body);
+  border-bottom: 1px solid var(--border);
+  border-right: none;
+  vertical-align: middle;
+}
+
+/* Alternating row background */
+tr:nth-child(even) td {
+  background: var(--row-alt);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* STT column — muted monospace number */
+td:first-child,
+th:first-child {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  width: 48px;
+  text-align: center;
+}
+
+/* Tên sản phẩm — prominent */
+td:nth-child(2) {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* Đơn giá / Số lượng / Thành tiền — monospace numerals */
+.dongia,
+.soluong,
+.thanhtien,
+td:nth-child(3),
+td:nth-child(4),
+td:nth-child(6) {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-align: right;
+}
+
+/* Đơn vị tính */
+td:nth-child(5) {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+/* Thành tiền column — accent styling */
+.thanhtien,
+td:nth-child(6) {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* ── Tổng thanh toán row ── */
+tr:last-child {
+  background: var(--total-bg) !important;
+}
+
+tr:last-child td {
+  color: var(--total-text);
+  border-bottom: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+tr:last-child td[colspan] {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.7rem;
+}
+
+#thanhtoan {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: right;
+  color: var(--total-text);
+}
+
+/* ── Animations ── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Print styles ── */
+@media print {
+  body {
+    background: white;
+    padding: 24px;
+  }
+  table {
+    border: 1px solid #ccc;
+  }
+  tr:last-child {
+    background: #111 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  body {
+    padding: 32px 12px;
+  }
+  th, td {
+    padding: 12px 12px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .container {
+    animation: none;
+  }
+}

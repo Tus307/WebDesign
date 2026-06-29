@@ -1,0 +1,163 @@
+/* trang-chu.css — Home / Navigation Page */
+/* Premium Utilitarian Minimalism — Warm Monochrome Palette */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --canvas:       #F7F6F3;
+  --surface:      #FFFFFF;
+  --border:       #EAEAEA;
+  --text-primary: #111111;
+  --text-muted:   #787774;
+  --accent-bg:    #E1F3FE;
+  --accent-text:  #1F6C9F;
+  --font-sans:    'Helvetica Neue', 'SF Pro Display', Arial, sans-serif;
+  --font-serif:   'Georgia', 'Playfair Display', serif;
+  --transition:   200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--canvas);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 64px 24px;
+}
+
+/* ── Site header label ── */
+body::before {
+  content: "TRANG CHỦ";
+  display: block;
+  position: fixed;
+  top: 24px;
+  left: 32px;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+}
+
+/* ── Main wrapper ── */
+h3 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--text-primary);
+  margin-bottom: 48px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 24px;
+  max-width: 560px;
+  width: 100%;
+}
+
+/* ── Nav list ── */
+ul[style*="list-style-type: none"],
+ul {
+  list-style: none !important;
+  max-width: 560px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+ul li {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+ul li a {
+  display: block;
+  padding: 16px 24px;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition), padding-left var(--transition);
+  position: relative;
+}
+
+ul li a:last-child {
+  border-bottom: none;
+}
+
+ul li a::before {
+  content: "→";
+  position: absolute;
+  left: 24px;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity var(--transition), transform var(--transition);
+  color: var(--accent-text);
+}
+
+ul li a:hover {
+  background: var(--canvas);
+  padding-left: 40px;
+}
+
+ul li a:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── Scroll-in animation ── */
+ul li {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeUp 500ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+ul li:nth-child(1) { animation-delay: 80ms; }
+ul li:nth-child(2) { animation-delay: 160ms; }
+ul li:nth-child(3) { animation-delay: 240ms; }
+ul li:nth-child(4) { animation-delay: 320ms; }
+ul li:nth-child(5) { animation-delay: 400ms; }
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  body {
+    padding: 48px 16px;
+  }
+  h3 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ul li {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  ul li a {
+    transition: none;
+  }
+}
